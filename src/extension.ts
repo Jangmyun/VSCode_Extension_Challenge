@@ -2,24 +2,38 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from 'vscode';
 
-// This method is called when your extension is activated
-// Your extension is activated the very first time the command is executed
+// 익스텐션 활성화될 때 호출되는 메서드
+// 명령어 처음 실행할 때 활성화 됨
 export function activate(context: vscode.ExtensionContext) {
+  console.log(
+    'Congratulations, your extension "extensionchallenge" is now active!'
+  );
 
-	// Use the console to output diagnostic information (console.log) and errors (console.error)
-	// This line of code will only be executed once when your extension is activated
-	console.log('Congratulations, your extension "extensionchallenge" is now active!');
+  // 명령어는 package.json에 정의됨
+  // registerCommand를 통해 command의 구현 제공
+  // commandId 파라미터는 package.json에 정의된 command field와 일치해야 한다.
 
-	// The command has been defined in the package.json file
-	// Now provide the implementation of the command with registerCommand
-	// The commandId parameter must match the command field in package.json
-	const disposable = vscode.commands.registerCommand('extensionchallenge.helloWorld', () => {
-		// The code you place here will be executed every time your command is executed
-		// Display a message box to the user
-		vscode.window.showInformationMessage('Hello World from extensionChallenge!');
-	});
+  context.subscriptions.push(
+    vscode.commands.registerCommand('extensionchallenge.helloWorld', () => {
+      // registerCommand의 두번째 파라미터(콜백함수)는 command가 실행될때마다 실행됨
+      // 메시지 박스를 유저에게 보여줌
+      vscode.window.showInformationMessage(
+        'Hello World from extensionChallenge!'
+      );
+      vscode.window.showInputBox({
+        placeHolder: 'Password',
+        prompt: 'This is Prompt',
+        title: 'Title',
+        ignoreFocusOut: true,
+      });
+    })
+  );
 
-	context.subscriptions.push(disposable);
+  context.subscriptions.push(
+    vscode.commands.registerCommand('extensionchallenge.askQuestion', () => {
+      vscode.window.showInformationMessage('How was your day?', 'good', 'bad');
+    })
+  );
 }
 
 // This method is called when your extension is deactivated

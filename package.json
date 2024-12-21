@@ -16,6 +16,10 @@
       {
         "command": "extensionchallenge.helloWorld",
         "title": "Hello World"
+      },
+      {
+        "command": "extensionchallenge.askQuestion",
+        "title": "Ask Question"
       }
     ]
   },

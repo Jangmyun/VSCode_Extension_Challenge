@@ -23,6 +23,28 @@
         "command": "extensionchallenge.askQuestion",
         "category": "Extension Template",
         "title": "Ask Question"
+      },
+      {
+        "command": "aaa.test",
+        "category": "Extension Test",
+        "title": "Extension Test"
+      },
+      {
+        "command": "openAI.setAPIKey",
+        "category": "Extension Test",
+        "title": "Set Open AI API Key"
+      }
+    ],
+    "configuration":[
+      {
+        "title": "Extension Challenge",
+        "properties": {
+          "openAI.apiKey" : {
+            "type":["array","null"],
+            "default": null,
+            "description": "Open AI API Key"
+          }
+        }
       }
     ]
   },
@@ -58,5 +80,8 @@
     "typescript": "^5.7.2",
     "webpack": "^5.95.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "openai": "^4.77.0"
   }
 }

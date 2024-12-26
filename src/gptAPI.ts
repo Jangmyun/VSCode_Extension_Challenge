@@ -1,0 +1,19 @@
+import * as vscode from "vscode";
+
+/**
+ * @description Open API 입력받는 disposable 객체
+ */
+export const setApiKey: vscode.Disposable = vscode.commands.registerCommand("openAI.setAPIKey", async () => {
+  const apiKey = await vscode.window.showInputBox({
+    prompt: "Enter your OpenAI API key.",
+    ignoreFocusOut: true,
+    password: true,
+  });
+
+  if (apiKey) {
+    await vscode.workspace.getConfiguration().update("openAI.apiKey", apiKey, vscode.ConfigurationTarget.Global);
+    vscode.window.showInformationMessage("Open AI API key saved successfully.");
+  } else {
+    vscode.window.showInformationMessage("No API key entered.");
+  }
+});

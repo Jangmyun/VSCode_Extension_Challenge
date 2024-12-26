@@ -2,6 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { executeCommand } from "./util";
+import { setApiKey } from "./gptAPI";
 
 // 익스텐션 활성화될 때 호출되는 메서드
 // 명령어 처음 실행할 때 활성화 됨
@@ -34,7 +35,11 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  context.subscriptions.push(helloWorld, askQuestion);
+  const test = vscode.commands.registerCommand("aaa.test", () => {
+    executeCommand("editor.action.addCommentLine");
+  });
+
+  context.subscriptions.push(helloWorld, askQuestion, setApiKey);
 }
 
 // This method is called when your extension is deactivated

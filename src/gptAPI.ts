@@ -6,6 +6,7 @@ import * as vscode from "vscode";
 export const setApiKey: vscode.Disposable = vscode.commands.registerCommand("openAI.setAPIKey", async () => {
   const apiKey = await vscode.window.showInputBox({
     prompt: "Enter your OpenAI API key.",
+    placeHolder: "Open API Key",
     ignoreFocusOut: true,
     password: true,
   });

@@ -2,7 +2,7 @@
 // Import the module and reference it with the alias vscode in your code below
 import * as vscode from "vscode";
 import { executeCommand } from "./util";
-import { setApiKey } from "./gptAPI";
+import { setApiKey, setGPTModel } from "./gptAPI";
 
 // 익스텐션 활성화될 때 호출되는 메서드
 // 명령어 처음 실행할 때 활성화 됨
@@ -35,11 +35,16 @@ export function activate(context: vscode.ExtensionContext) {
     }
   });
 
-  const test = vscode.commands.registerCommand("aaa.test", () => {
-    executeCommand("editor.action.addCommentLine");
+  const testCommand = vscode.commands.registerCommand("aaa.test", () => {
+    const apiKey = vscode.workspace.getConfiguration().get("openAI.modelSelected");
+    if (!apiKey) {
+      vscode.window.showErrorMessage("No GPT model selected.");
+      return;
+    }
+    vscode.window.showErrorMessage(`Current model: ${apiKey}`);
   });
 
-  context.subscriptions.push(helloWorld, askQuestion, setApiKey);
+  context.subscriptions.push(helloWorld, askQuestion, setApiKey, setGPTModel, testCommand);
 }
 
 // This method is called when your extension is deactivated

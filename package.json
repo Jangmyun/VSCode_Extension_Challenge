@@ -14,6 +14,11 @@
   "contributes": {
     "commands": [
       {
+        "command": "catCoding.start",
+        "title": "Start new cat coding session",
+        "category": "Cat Coding"
+      },
+      {
         "command": "extensionchallenge.helloWorld",
         "title": "Hello World"
       },

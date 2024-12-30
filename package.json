@@ -9,9 +9,7 @@
   "categories": [
     "Other"
   ],
-  "activationEvents": [
-    "onCommand:extensionchallenge.askQues"
-  ],
+  "activationEvents": [],
   "main": "./dist/extension.js",
   "contributes": {
     "commands": [
@@ -33,16 +31,32 @@
         "command": "openAI.setAPIKey",
         "category": "Extension Test",
         "title": "Set Open AI API Key"
+      },
+      {
+        "command": "openAI.setModel",
+        "category": "Extension Test",
+        "title": "Set Open AI GPT Model"
       }
     ],
-    "configuration":[
+    "configuration": [
       {
         "title": "Extension Challenge",
         "properties": {
-          "openAI.apiKey" : {
-            "type":["array","null"],
+          "openAI.apiKey": {
+            "type": [
+              "string",
+              "null"
+            ],
             "default": null,
             "description": "Open AI API Key"
+          },
+          "openAI.modelSelected": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "default": null,
+            "description": "Open AI GPT Model Selected"
           }
         }
       }

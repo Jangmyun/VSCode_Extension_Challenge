@@ -3,6 +3,7 @@
 import * as vscode from "vscode";
 import { executeCommand } from "./util";
 import { setApiKey, setGPTModel } from "./gptAPI";
+import { createWebview } from "./webView";
 
 // 익스텐션 활성화될 때 호출되는 메서드
 // 명령어 처음 실행할 때 활성화 됨
@@ -44,7 +45,9 @@ export function activate(context: vscode.ExtensionContext) {
     vscode.window.showErrorMessage(`Current model: ${apiKey}`);
   });
 
-  context.subscriptions.push(helloWorld, askQuestion, setApiKey, setGPTModel, testCommand);
+  const catCoding = vscode.commands.registerCommand("catCoding.start", createWebview);
+
+  context.subscriptions.push(helloWorld, askQuestion, setApiKey, setGPTModel, testCommand, catCoding);
 }
 
 // This method is called when your extension is deactivated
